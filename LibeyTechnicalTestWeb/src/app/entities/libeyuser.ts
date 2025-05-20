@@ -6,7 +6,7 @@ export interface LibeyUser{
     mothersLastName :string;
     address :string;
     regionCode :string;
-    provinceCode :string;       
+    provinceCode :string;
     ubigeoCode :string;
     phone :string;
     email :string;

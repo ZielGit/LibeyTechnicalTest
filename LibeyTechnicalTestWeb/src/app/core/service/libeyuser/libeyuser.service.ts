@@ -12,4 +12,14 @@ export class LibeyUserService {
 		const uri = `${environment.pathLibeyTechnicalTest}LibeyUser/${documentNumber}`;
 		return this.http.get<LibeyUser>(uri);
 	}
+
+	all(): Observable<LibeyUser> {
+		const uri = `${environment.pathLibeyTechnicalTest}LibeyUser/all`;
+		return this.http.get<LibeyUser>(uri);
+	}
+
+	save(user: LibeyUser): Observable<LibeyUser> {
+		const uri = `${environment.pathLibeyTechnicalTest}LibeyUser`;
+		return this.http.post<LibeyUser>(uri, user);
+	}
 }

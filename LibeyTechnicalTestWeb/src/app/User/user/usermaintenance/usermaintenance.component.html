@@ -60,54 +60,54 @@
 			<div class="row pb-2 pr-2">
 				<div class="col-lg-2">Tipo de documento</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="CreditDebitNoteReasonTypeId" required>
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="DocumentType" required [(ngModel)]="selectedDocumentType" [items]="documentTypes" bindLabel="documentTypeDescription" bindValue="documentTypeId">
+						<ng-option *ngFor="let dt of documentTypes" [value]="dt.documentTypeId">{{ dt.documentTypeDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Número de documento</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="documentNumber" name="documentNumber" /></div>
 			</div>
 			<div class="row pb-2">
 				<div class="col-lg-2">Nombre</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="name" name="name" /></div>
 				<div class="col-lg-2">Apellido Paterno</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="fathersLastName" name="fathersLastName" /></div>
 			</div>
 			<div class="row pb-2">
 				<div class="col-lg-2">Apellido Materno</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="mothersLastName" name="mothersLastName" /></div>
 				<div class="col-lg-2">Dirección</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="address" name="address" /></div>
 			</div>
 			<div class="row pb-2">
 				<div class="col-lg-2">Departamento</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="CreditDebitNoteReasonTypeId" required>
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="Department" required [(ngModel)]="selectedDepartment" (change)="onDepartmentChange()">
+						<ng-option *ngFor="let dep of departments" [value]="dep.ubigeoCode">{{ dep.ubigeoDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Provincia</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="CreditDebitNoteReasonTypeId" required>
-						<ng-option value="1">Lima</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="Province" required [(ngModel)]="selectedProvince" (change)="onProvinceChange()" [disabled]="!selectedDepartment">
+						<ng-option *ngFor="let prov of provinces" [value]="prov.provinceCode">{{ prov.ubigeoDescription }}</ng-option>
 					</ng-select>
 				</div>
 			</div>
 			<div class="row pb-2">
 				<div class="col-lg-2">Distrito</div>
 				<div class="col-lg-4">
-					<ng-select placeholder="Seleccione" class="ng-select-solid" name="CreditDebitNoteReasonTypeId" required>
-						<ng-option value="1">Villa el salvador</ng-option>
+					<ng-select placeholder="Seleccione" class="ng-select-solid" name="ubigeoCode" required [(ngModel)]="selectedRegion" [disabled]="!selectedProvince">
+						<ng-option *ngFor="let reg of regions" [value]="reg.regionCode">{{ reg.ubigeoDescription }}</ng-option>
 					</ng-select>
 				</div>
 				<div class="col-lg-2">Telefono</div>
-				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="text" class="form-control form-control-sm" [(ngModel)]="phone" name="phone" /></div>
 			</div>
 			<div class="row pb-2">
 				<div class="col-lg-2">Correo</div>
-				<div class="col-lg-4"><input type="email" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="email" class="form-control form-control-sm" [(ngModel)]="email" name="email" /></div>
 				<div class="col-lg-2">Contraseña</div>
-				<div class="col-lg-4"><input type="password" class="form-control form-control-sm" /></div>
+				<div class="col-lg-4"><input type="password" class="form-control form-control-sm" [(ngModel)]="password" name="password" /></div>
 			</div>
 		</div>
 	</div>	
