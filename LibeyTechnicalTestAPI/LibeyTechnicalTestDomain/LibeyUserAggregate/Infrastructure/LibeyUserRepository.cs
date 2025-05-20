@@ -18,7 +18,6 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
         }
         public LibeyUserResponse FindResponse(string documentNumber)
         {
-
             var q = from libeyUser in _context.LibeyUsers.Where(x => x.DocumentNumber.Equals(documentNumber))
                     select new LibeyUserResponse()
                     {
@@ -36,6 +35,43 @@ namespace LibeyTechnicalTestDomain.LibeyUserAggregate.Infrastructure
             var list = q.ToList();
             if (list.Any()) return list.First();
             else return new LibeyUserResponse();
+        }
+
+        public void Update(LibeyUser user)
+        {
+            _context.LibeyUsers.Update(user);
+            _context.SaveChanges();
+        }
+
+        public void Delete(string documentNumber)
+        {
+            var user = _context.LibeyUsers.FirstOrDefault(x => x.DocumentNumber == documentNumber);
+            if (user != null)
+            {
+                user.Deactivate(); // Soft delete
+                _context.SaveChanges();
+            }
+        }
+
+        public IEnumerable<LibeyUserResponse> GetAll()
+        {
+            return _context.LibeyUsers
+                .Where(x => x.Active)
+                .Select(x => new LibeyUserResponse
+                {
+                    DocumentNumber = x.DocumentNumber,
+                    DocumentTypeId = x.DocumentTypeId,
+                    Name = x.Name,
+                    FathersLastName = x.FathersLastName,
+                    MothersLastName = x.MothersLastName,
+                    Address = x.Address,
+                    UbigeoCode = x.UbigeoCode,
+                    Phone = x.Phone,
+                    Email = x.Email,
+                    Password = x.Password,
+                    Active = x.Active
+                })
+                .ToList();
         }
     }
 }

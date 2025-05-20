@@ -7,10 +7,13 @@ namespace LibeyTechnicalTestDomain.EFCore
     {
         public Context(DbContextOptions<Context> options) : base(options) { }
         public DbSet<LibeyUser> LibeyUsers { get; set; }
+        public DbSet<DocumentType> DocumentTypes { get; set; }
+        public DbSet<Ubigeo> Ubigeos { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
             modelBuilder.ApplyConfiguration(new LibeyUserConfiguration());
+            modelBuilder.ApplyConfiguration(new DocumentTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new UbigeoConfiguration());
         }
     }
 }

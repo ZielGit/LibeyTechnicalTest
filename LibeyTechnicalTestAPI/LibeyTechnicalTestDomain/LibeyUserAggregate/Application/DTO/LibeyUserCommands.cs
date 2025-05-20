@@ -13,4 +13,6 @@
         public string Email { get; init; }
         public string Password { get; init; }       
     }
+
+    public record DeleteUserCommand(string DocumentNumber);
 }
